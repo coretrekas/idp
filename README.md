@@ -260,7 +260,6 @@ Remember to update the service config to make use of it.
 [
     //...
     'coretrek' => [
-        'base_url' => 'https://idp-server.com',
         'client_id' => '986b2415-d423-447d-8d32-e83ee78d7d66',
         'client_secret' => 'SsEeArd2b8ILJ1TJmDfDyX24PNx6yB6sY86twhO4',
         'redirect' => 'http://coretrek-idp-client.test/auth/callback',
