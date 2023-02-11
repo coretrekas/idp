@@ -250,6 +250,38 @@ $sdk->get('https://idp-server.com/api/users?per_page=25&page=2');
 \Coretrek\Idp\Facades\Sdk::get('https://idp-server.com/api/users?per_page=25&page=2');
 ```
 
+## Laravel Socialite support
+
+This package include a socialite provider for authenticating users.
+Remember to update the service config to make use of it.
+
+```php
+// /config/services.php
+[
+    //...
+    'coretrek' => [
+        'base_url' => 'https://idp-server.com',
+        'client_id' => '986b2415-d423-447d-8d32-e83ee78d7d66',
+        'client_secret' => 'SsEeArd2b8ILJ1TJmDfDyX24PNx6yB6sY86twhO4',
+        'redirect' => 'http://coretrek-idp-client.test/auth/callback',
+    ]
+]
+```
+
+```php
+use Laravel\Socialite\Facades\Socialite;
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('coretrek')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('coretrek')->user();
+
+    // $user->token
+});
+```
+
 ## Testing
 
 You can run the tests with:
