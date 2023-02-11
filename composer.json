@@ -1,0 +1,55 @@
+{
+    "name": "coretrekas/idp",
+    "description": "SDK to interact with the Coretrek IDP service with Laravel support",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "coretrek",
+        "idp",
+        "sdk"
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/http": "*",
+        "illuminate/support": "*"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.4",
+        "orchestra/testbench": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Coretrek\\Idp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Coretrek\\Idp\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "authors": [
+        {
+            "name": "Tommy Leirvik",
+            "email": "tommyl@coretrek.no"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Coretrek\\Idp\\LaravelServiceProvider"
+            ],
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
