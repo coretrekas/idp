@@ -51,9 +51,9 @@ $sdk = new \Coretrek\Idp\Sdk($token, 'https://idp-server.com');
 With laravel the service provider will automatically be found by the framework.
 It will also automatically take care of storing the token and refreshing it when needed by the cache driver of your choice.
 
-### Usage
+## Usage
 
-#### Users
+### Users
 
 List all users.
 
@@ -135,7 +135,7 @@ $sdk->users()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 \Coretrek\Idp\Facades\Sdk::users()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 ```
 
-#### Groups
+### Groups
 
 List all groups.
 
@@ -205,7 +205,7 @@ $sdk->groups()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 \Coretrek\Idp\Facades\Sdk::groups()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 ```
 
-#### Group and user relation
+### Group and user relation
 
 Add a user to the group
 
@@ -237,7 +237,7 @@ $sdk->groups()->removeUser('986b24bb-655a-4fc5-9608-8a8aba83b2dd', '8a8aba83b2dd
 \Coretrek\Idp\Facades\Sdk::groups()->removeUser('986b24bb-655a-4fc5-9608-8a8aba83b2dd', '8a8aba83b2dd-655a-4fc5-9608-986b24bb');
 ```
 
-#### Misc
+### Misc
 
 When using endpoints with pagination the api will return the necessary url to get the following results.
 In these cases we provide a `get` method on the sdk.
