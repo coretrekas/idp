@@ -44,7 +44,8 @@ class LaravelServiceProvider extends ServiceProvider
 
             return new Sdk(
                 new Token($credentials['token_type'], $credentials['access_token'], $credentials['expires_in']),
-                $app['config']->get('coretrek-idp.base_url')
+                $app['config']->get('coretrek-idp.base_url'),
+                $app['config']->get('coretrek-idp.locale')
             );
         });
     }

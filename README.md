@@ -43,7 +43,7 @@ The `toArray()` or `toJson()` method can help with storing the token.
 When you have a valid token instance you can instantiate the sdk.
 
 ```php
-$sdk = new \Coretrek\Idp\Sdk($token, 'https://idp-server.com');
+$sdk = new \Coretrek\Idp\Sdk($token, 'https://idp-server.com', 'nb');
 ```
 
 ### Setup Sdk with laravel

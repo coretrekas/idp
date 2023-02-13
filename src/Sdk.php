@@ -36,15 +36,18 @@ final class Sdk
      *
      * @param  \Coretrek\Idp\Token  $token
      * @param  string  $baseUrl
+     * @param  string  $locale
      * @return void
      */
     public function __construct(
         protected Token $token,
         protected string $baseUrl,
+        protected string $locale = 'nb',
     ) {
         $this->request = Http::withOptions([
             'base_uri' => $baseUrl,
             'headers' => [
+                'Accept-Language' => $locale,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Authorization' => $this->token->authorizationHeader(),
