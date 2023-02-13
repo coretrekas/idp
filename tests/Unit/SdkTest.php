@@ -45,7 +45,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $users = $sdk->users->list();
+        $users = $sdk->users()->list();
 
         $this->assertArrayHasKey('data', $users);
         $this->assertArrayHasKey('meta', $users);
@@ -61,7 +61,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $users = $sdk->users->list(25);
+        $users = $sdk->users()->list(25);
 
         $this->assertArrayHasKey('data', $users);
         $this->assertArrayHasKey('meta', $users);
@@ -77,7 +77,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $users = $sdk->users->list(['first_name' => 'John']);
+        $users = $sdk->users()->list(['first_name' => 'John']);
 
         $this->assertArrayHasKey('data', $users);
         $this->assertArrayHasKey('meta', $users);
@@ -93,7 +93,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $user = $sdk->users->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
+        $user = $sdk->users()->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 
         $this->assertArrayHasKey('data', $user);
     }
@@ -107,7 +107,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $users = $sdk->users->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['groups']);
+        $users = $sdk->users()->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['groups']);
 
         $this->assertArrayHasKey('data', $users);
     }
@@ -121,7 +121,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $user = $sdk->users->create([
+        $user = $sdk->users()->create([
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john@example.com',
@@ -160,7 +160,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->users->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+        $sdk->users()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john@example.com',
@@ -197,7 +197,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->users->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
+        $sdk->users()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 
         Http::assertSent(fn (Request $request) => $request->url() === config('coretrek-idp.base_url').'/api/users/986b24bb-655a-4fc5-9608-8a8aba83b2dd');
     }
@@ -211,7 +211,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $groups = $sdk->groups->list();
+        $groups = $sdk->groups()->list();
 
         $this->assertArrayHasKey('data', $groups);
         $this->assertArrayHasKey('meta', $groups);
@@ -227,7 +227,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $groups = $sdk->groups->list(25);
+        $groups = $sdk->groups()->list(25);
 
         $this->assertArrayHasKey('data', $groups);
         $this->assertArrayHasKey('meta', $groups);
@@ -243,7 +243,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $groups = $sdk->groups->list(['identifier' => '123']);
+        $groups = $sdk->groups()->list(['identifier' => '123']);
 
         $this->assertArrayHasKey('data', $groups);
         $this->assertArrayHasKey('meta', $groups);
@@ -259,7 +259,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $group = $sdk->groups->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
+        $group = $sdk->groups()->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 
         $this->assertArrayHasKey('data', $group);
     }
@@ -273,7 +273,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $groups = $sdk->groups->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['users']);
+        $groups = $sdk->groups()->show('986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['users']);
 
         $this->assertArrayHasKey('data', $groups);
     }
@@ -287,7 +287,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $group = $sdk->groups->create([
+        $group = $sdk->groups()->create([
             'name' => 'Group A',
             'description' => 'Description of the group A',
             'identifier' => '000000000',
@@ -315,7 +315,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->groups->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+        $sdk->groups()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
             'name' => 'Group A',
             'description' => 'Description of the group A',
             'identifier' => '000000000',
@@ -341,7 +341,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->groups->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
+        $sdk->groups()->delete('986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 
         Http::assertSent(fn (Request $request) => $request->method() === 'DELETE' && $request->url() === config('coretrek-idp.base_url').'/api/groups/986b24bb-655a-4fc5-9608-8a8aba83b2dd'
         );
@@ -356,7 +356,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->groups->addUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['foo' => 'bar']);
+        $sdk->groups()->addUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['foo' => 'bar']);
 
         Http::assertSent(fn (Request $request) => $request->method() === 'POST' && $request['meta'] === ['foo' => 'bar']
         );
@@ -371,7 +371,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->groups->updateUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['foo' => 'bar']);
+        $sdk->groups()->updateUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd', ['foo' => 'bar']);
 
         Http::assertSent(fn (Request $request) => $request->method() === 'PATCH' && $request['meta'] === ['foo' => 'bar']
         );
@@ -386,7 +386,7 @@ class SdkTest extends TestCase
 
         $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
 
-        $sdk->groups->removeUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd');
+        $sdk->groups()->removeUser('457b24bb-655a-4fc5-9608-8a8aba83b3bb', '986b24bb-655a-4fc5-9608-8a8aba83b2dd');
 
         Http::assertSent(fn (Request $request) => $request->method() === 'DELETE');
     }

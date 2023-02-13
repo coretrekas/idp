@@ -22,14 +22,14 @@ final class Sdk
      *
      * @param \Coretrek\Idp\Resources\Users
      */
-    public readonly Resource $users;
+    protected Resource $users;
 
     /**
      * Group resource.
      *
      * @param \Coretrek\Idp\Resources\Groups
      */
-    public readonly Resource $groups;
+    protected Resource $groups;
 
     /**
      * Create an SDK instance.
