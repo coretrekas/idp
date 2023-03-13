@@ -20,7 +20,7 @@ abstract class Resource
     /**
      * Build HTTP query filter from the given array.
      *
-     * @param array<string, mixed> $filter
+     * @param  array<string, mixed>  $filter
      * @return array<string>
      */
     protected function buildFilter(array $filter)
