@@ -20,7 +20,8 @@ class LaravelServiceProvider extends ServiceProvider
             ], 'config');
         }
 
-        if (class_exists(\Laravel\Socialite\Contracts\Factory::class)) {
+        // If Socialite is installed we will automatically provide a coretrek provider.
+        if (class_exists(\Laravel\Socialite\SocialiteServiceProvider::class)) {
             $socialite = $this->app->make(\Laravel\Socialite\Contracts\Factory::class);
 
             $socialite->extend('coretrek', fn () => $socialite->buildProvider(SocialiteProvider::class, config('services.coretrek')));
