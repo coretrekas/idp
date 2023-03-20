@@ -29,7 +29,7 @@ class SocialiteProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get($this->resolveEndpointUrl('api/user?includes=groups'), [
+        $response = $this->getHttpClient()->get($this->resolveEndpointUrl('api/user?includes=group,users&per_page=100'), [
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
