@@ -2,7 +2,7 @@
 
 All notable changes to `coretrekas/idp` will be documented in this file
 
-## 1.0.3
+## 1.0.4
 
 - Dont require a specific guzzle version
 - Updated dependencies
