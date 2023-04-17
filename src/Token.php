@@ -11,9 +11,6 @@ class Token implements Arrayable, Jsonable
     /**
      * Create a Token instance.
      *
-     * @param  string  $type
-     * @param  string  $accessToken
-     * @param  int  $expiresIn
      * @return void
      */
     public function __construct(
@@ -26,9 +23,6 @@ class Token implements Arrayable, Jsonable
     /**
      * Make a new token.
      *
-     * @param  string  $baseUrl
-     * @param  string  $id
-     * @param  string  $secret
      * @param  array<string>  $scopes
      * @return \Coretrek\Idp\Token
      *

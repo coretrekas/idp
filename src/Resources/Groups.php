@@ -38,7 +38,6 @@ class Groups extends Resource
     /**
      * Show the given group.
      *
-     * @param  string  $id
      * @param  array<string>  $includes
      *
      * @throws \Illuminate\Http\Client\RequestException
@@ -76,7 +75,6 @@ class Groups extends Resource
     /**
      * Update the given group.
      *
-     * @param  string  $id
      * @param  array<string, mixed>  $attributes
      * @return void
      *
@@ -94,7 +92,6 @@ class Groups extends Resource
     /**
      * Delete the given group.
      *
-     * @param  string  $id
      * @return void
      *
      * @throws \Illuminate\Http\Client\RequestException
@@ -111,9 +108,6 @@ class Groups extends Resource
     /**
      * Add a user the given group.
      *
-     * @param  string  $groupId
-     * @param  string  $userId
-     * @param  array  $meta
      * @return void
      *
      * @throws \Illuminate\Http\Client\RequestException
@@ -130,9 +124,6 @@ class Groups extends Resource
     /**
      * Update meta data in the group for the given user.
      *
-     * @param  string  $groupId
-     * @param  string  $userId
-     * @param  array  $meta
      * @return void
      *
      * @throws \Illuminate\Http\Client\RequestException
@@ -149,8 +140,6 @@ class Groups extends Resource
     /**
      * Remove the given user from the group.
      *
-     * @param  string  $groupId
-     * @param  string  $userId
      * @return void
      *
      * @throws \Illuminate\Http\Client\RequestException

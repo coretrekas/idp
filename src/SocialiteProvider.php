@@ -55,7 +55,6 @@ class SocialiteProvider extends AbstractProvider implements ProviderInterface
     /**
      * Resolve the full url for the given end point.
      *
-     * @param  string  $endPoint
      * @return string
      */
     private function resolveEndpointUrl(string $endPoint)

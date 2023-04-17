@@ -38,7 +38,6 @@ class Users extends Resource
     /**
      * Show the given user.
      *
-     * @param  string  $id
      * @param  array<string>  $includes
      *
      * @throws \Illuminate\Http\Client\RequestException
@@ -76,7 +75,6 @@ class Users extends Resource
     /**
      * Update the given user.
      *
-     * @param  string  $id
      * @param  array<string, mixed>  $attributes
      * @return void
      *
@@ -94,7 +92,6 @@ class Users extends Resource
     /**
      * Delete the given user.
      *
-     * @param  string  $id
      * @return void
      *
      * @throws \Illuminate\Http\Client\RequestException

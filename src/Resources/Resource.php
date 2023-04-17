@@ -10,7 +10,6 @@ abstract class Resource
     /**
      * Create a resource instance.
      *
-     * @param  \Coretrek\Idp\Sdk  $sdk
      * @return void
      */
     public function __construct(readonly Sdk $sdk)

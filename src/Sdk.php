@@ -35,8 +35,6 @@ final class Sdk
      * Create an SDK instance.
      *
      * @param  \Coretrek\Idp\Token  $token
-     * @param  string  $baseUrl
-     * @param  string  $locale
      * @return void
      */
     public function __construct(
@@ -61,7 +59,6 @@ final class Sdk
     /**
      * Generic GET request.
      *
-     * @param  string  $url
      * @return array<mixed>
      *
      * @throws \Illuminate\Http\Client\RequestException
