@@ -2,6 +2,9 @@
 
 All notable changes to `coretrekas/idp` will be documented in this file
 
+## 1.0.5
+- Fallback if laravel facades is not configured correctly within the project
+
 ## 1.0.4
 
 - Dont require a specific guzzle version

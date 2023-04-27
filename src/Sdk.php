@@ -2,6 +2,7 @@
 
 namespace Coretrek\Idp;
 
+use Exception;
 use Coretrek\Idp\Resources\Users;
 use Coretrek\Idp\Resources\Groups;
 use Coretrek\Idp\Resources\Resource;
@@ -42,7 +43,26 @@ final class Sdk
         protected string $baseUrl,
         protected string $locale = 'nb',
     ) {
-        $this->request = Http::withOptions([
+        try {
+            $this->request = Http::withOptions($this->options($baseUrl, $locale));
+        } catch (Exception $e) {
+            $this->request = (new \Illuminate\Http\Client\Factory())->withOptions($this->options($baseUrl, $locale));
+        }
+
+        $this->users = new Users($this);
+        $this->groups = new Groups($this);
+    }
+
+    /**
+     * Get formatted options
+     *
+     * @return array<string>
+     *
+     * @throws \Illuminate\Http\Client\RequestException
+     */
+    protected function options(string $baseUrl, string $locale)
+    {
+        return [
             'base_uri' => $baseUrl,
             'headers' => [
                 'Accept-Language' => $locale,
@@ -50,10 +70,7 @@ final class Sdk
                 'Content-Type' => 'application/json',
                 'Authorization' => $this->token->authorizationHeader(),
             ],
-        ]);
-
-        $this->users = new Users($this);
-        $this->groups = new Groups($this);
+        ];
     }
 
     /**
