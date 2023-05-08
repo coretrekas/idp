@@ -2,6 +2,7 @@
 
 namespace Coretrek\Idp;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -30,15 +31,28 @@ class Token implements Arrayable, Jsonable
      */
     public static function make(string $baseUrl, string $id, string $secret, array $scopes = [])
     {
-        $response = Http::asForm()
-            ->post("{$baseUrl}/oauth/token", [
-                'grant_type' => 'client_credentials',
-                'client_id' => $id,
-                'client_secret' => $secret,
-                'scope' => implode(' ', $scopes),
-            ])
-            ->throw()
-            ->json();
+        try {
+            $response = Http::asForm()
+                ->post("{$baseUrl}/oauth/token", [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $id,
+                    'client_secret' => $secret,
+                    'scope' => implode(' ', $scopes),
+                ])
+                ->throw()
+                ->json();
+        } catch (Exception $e) {
+            $response = (new \Illuminate\Http\Client\Factory())
+                ->asForm()
+                ->post("{$baseUrl}/oauth/token", [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $id,
+                    'client_secret' => $secret,
+                    'scope' => implode(' ', $scopes),
+                ])
+                ->throw()
+                ->json();
+        }
 
         return new static($response['token_type'], $response['access_token'], $response['expires_in']);
     }

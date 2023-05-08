@@ -56,7 +56,7 @@ final class Sdk
     /**
      * Get formatted options
      *
-     * @return array<string>
+     * @return array<mixed>
      *
      * @throws \Illuminate\Http\Client\RequestException
      */
