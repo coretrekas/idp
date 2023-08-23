@@ -102,11 +102,34 @@ $sdk->users()->create([
 \Coretrek\Idp\Facades\Sdk::users()->create();
 ```
 
+Validate a new user without creating it.
+
+```php
+// Plain sdk
+$sdk->users()->onlyValidate()->create([
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'email' => 'john@example.com',
+    'mobile' => '+4795916561',
+    'password' => 'Password1',
+    'locale' => 'nb',
+    'email_verified_at' => '2023-01-01 10:00:00',
+    'two_factor_secret' => 'abc123',
+    'two_factor_recovery_codes' => 'abc123 acd 321',
+    'meta' => [
+        'foo' => 'bar',
+    ],
+]);
+
+// Laravel facade
+\Coretrek\Idp\Facades\Sdk::users()->onlyValidate()->create();
+```
+
 Update user.
 
 ```php
 // Plain sdk
-$sdk->users()->update([
+$sdk->users()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
     'first_name' => 'John',
     'last_name' => 'Doe',
     'email' => 'john@example.com',
@@ -123,6 +146,29 @@ $sdk->users()->update([
 
 // Laravel facade
 \Coretrek\Idp\Facades\Sdk::users()->update();
+```
+
+Validate an update request for a given user.
+
+```php
+// Plain sdk
+$sdk->users()->onlyValidate()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'email' => 'john@example.com',
+    'mobile' => '+4795916561',
+    'password' => 'Password1',
+    'locale' => 'nb',
+    'email_verified_at' => '2023-01-01 10:00:00',
+    'two_factor_secret' => 'abc123',
+    'two_factor_recovery_codes' => 'abc123 acd 321',
+    'meta' => [
+        'foo' => 'bar',
+    ],
+]);
+
+// Laravel facade
+\Coretrek\Idp\Facades\Sdk::users()->onlyValidate()->update();
 ```
 
 Delete a user.
@@ -178,11 +224,28 @@ $sdk->groups()->create([
 \Coretrek\Idp\Facades\Sdk::groups()->create();
 ```
 
+Only validate a set of group attributes without creating the group.
+
+```php
+// Plain sdk
+$sdk->groups()->onlyValidate()->create([
+    'name' => 'Group A',
+    'description' => 'Description of the group A',
+    'identifier' => '000000000',
+    'meta' => [
+        'foo' => 'bar',
+    ],
+]);
+
+// Laravel facade
+\Coretrek\Idp\Facades\Sdk::groups()->onlyValidate()->create();
+```
+
 Update group.
 
 ```php
 // Plain sdk
-$sdk->users()->update([
+$sdk->users()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
     'name' => 'Group A',
     'description' => 'Description of the group A',
     'identifier' => '000000000',
@@ -193,6 +256,23 @@ $sdk->users()->update([
 
 // Laravel facade
 \Coretrek\Idp\Facades\Sdk::users()->update();
+```
+
+Only validate group attributes without updating it.
+
+```php
+// Plain sdk
+$sdk->users()->onlyValidate()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+    'name' => 'Group A',
+    'description' => 'Description of the group A',
+    'identifier' => '000000000',
+    'meta' => [
+        'foo' => 'bar',
+    ],
+]);
+
+// Laravel facade
+\Coretrek\Idp\Facades\Sdk::users()->onlyValidate()->update();
 ```
 
 Delete a group.

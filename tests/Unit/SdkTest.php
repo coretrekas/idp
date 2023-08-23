@@ -152,6 +152,80 @@ class SdkTest extends TestCase
     }
 
     /** @test */
+    public function it_only_validates_the_given_user_attributes_and_dont_create_the_user()
+    {
+        Http::fake([
+            '*/api/users?only_validate=true' => Http::response([], 204),
+        ]);
+
+        $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
+
+        $sdk->users()->onlyValidate()->create([
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john@example.com',
+            'mobile' => '+4795916561',
+            'password' => 'Password1',
+            'locale' => 'nb',
+            'email_verified_at' => '2023-01-01 10:00:00',
+            'two_factor_secret' => 'abc123',
+            'two_factor_recovery_codes' => 'abc123 acd 321',
+            'meta' => [
+                'foo' => 'bar',
+            ],
+        ]);
+
+        Http::assertSent(fn (Request $request) => $request['first_name'] === 'John'
+            && $request['last_name'] === 'Doe'
+            && $request['email'] === 'john@example.com'
+            && $request['mobile'] === '+4795916561'
+            && $request['password'] === 'Password1'
+            && $request['locale'] === 'nb'
+            && $request['email_verified_at'] === '2023-01-01 10:00:00'
+            && $request['two_factor_secret'] === 'abc123'
+            && $request['two_factor_recovery_codes'] === 'abc123 acd 321'
+            && $request['meta'] === ['foo' => 'bar']
+        );
+    }
+
+    /** @test */
+    public function it_only_validates_the_given_user_attributes_and_dont_update_the_user()
+    {
+        Http::fake([
+            '*/api/users/986b24bb-655a-4fc5-9608-8a8aba83b2dd?only_validate=true' => Http::response([], 204),
+        ]);
+
+        $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
+
+        $sdk->users()->onlyValidate()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john@example.com',
+            'mobile' => '+4795916561',
+            'password' => 'Password1',
+            'locale' => 'nb',
+            'email_verified_at' => '2023-01-01 10:00:00',
+            'two_factor_secret' => 'abc123',
+            'two_factor_recovery_codes' => 'abc123 acd 321',
+            'meta' => [
+                'foo' => 'bar',
+            ],
+        ]);
+
+        Http::assertSent(fn (Request $request) => $request['first_name'] === 'John'
+            && $request['last_name'] === 'Doe'
+            && $request['email'] === 'john@example.com'
+            && $request['mobile'] === '+4795916561'
+            && $request['password'] === 'Password1'
+            && $request['locale'] === 'nb'
+            && $request['email_verified_at'] === '2023-01-01 10:00:00'
+            && $request['two_factor_secret'] === 'abc123'
+            && $request['two_factor_recovery_codes'] === 'abc123 acd 321'
+            && $request['meta'] === ['foo' => 'bar']
+        );
+    }
+
+    /** @test */
     public function can_update_the_given_user()
     {
         Http::fake([
@@ -279,6 +353,32 @@ class SdkTest extends TestCase
     }
 
     /** @test */
+    public function it_only_validates_the_given_group_attributes_and_does_not_create_the_group()
+    {
+        Http::fake([
+            '*/api/groups?only_validate=true' => Http::response([], 204),
+        ]);
+
+        $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
+
+        $group = $sdk->groups()->onlyValidate()->create([
+            'name' => 'Group A',
+            'description' => 'Description of the group A',
+            'identifier' => '000000000',
+            'meta' => [
+                'foo' => 'bar',
+            ],
+        ]);
+
+        Http::assertSent(fn (Request $request) => $request->method() === 'POST'
+            && $request['name'] === 'Group A'
+            && $request['description'] === 'Description of the group A'
+            && $request['identifier'] === '000000000'
+            && $request['meta'] === ['foo' => 'bar']
+        );
+    }
+
+    /** @test */
     public function can_create_a_new_group()
     {
         Http::fake([
@@ -299,6 +399,32 @@ class SdkTest extends TestCase
         $this->assertArrayHasKey('data', $group);
 
         Http::assertSent(fn (Request $request) => $request->method() === 'POST'
+            && $request['name'] === 'Group A'
+            && $request['description'] === 'Description of the group A'
+            && $request['identifier'] === '000000000'
+            && $request['meta'] === ['foo' => 'bar']
+        );
+    }
+
+    /** @test */
+    public function it_only_validates_the_given_group_attributes_and_does_not_update_the_group()
+    {
+        Http::fake([
+            '*/api/groups/986b24bb-655a-4fc5-9608-8a8aba83b2dd?only_validate=true' => Http::response([], 204),
+        ]);
+
+        $sdk = new Sdk(new Token('Bearer', 'ABC-123'), config('coretrek-idp.base_url'));
+
+        $sdk->groups()->onlyValidate()->update('986b24bb-655a-4fc5-9608-8a8aba83b2dd', [
+            'name' => 'Group A',
+            'description' => 'Description of the group A',
+            'identifier' => '000000000',
+            'meta' => [
+                'foo' => 'bar',
+            ],
+        ]);
+
+        Http::assertSent(fn (Request $request) => $request->method() === 'PATCH'
             && $request['name'] === 'Group A'
             && $request['description'] === 'Description of the group A'
             && $request['identifier'] === '000000000'

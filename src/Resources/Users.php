@@ -67,7 +67,7 @@ class Users extends Resource
         return $this
             ->sdk
             ->request()
-            ->post('/api/users', $attributes)
+            ->post($this->buildUri('/api/users'), $attributes)
             ->throw()
             ->json();
     }
@@ -85,7 +85,7 @@ class Users extends Resource
         $this
             ->sdk
             ->request()
-            ->patch("/api/users/{$id}", $attributes)
+            ->patch($this->buildUri("/api/users/{$id}"), $attributes)
             ->throw();
     }
 

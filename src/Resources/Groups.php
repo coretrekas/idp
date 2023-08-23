@@ -67,7 +67,7 @@ class Groups extends Resource
         return $this
             ->sdk
             ->request()
-            ->post('/api/groups', $attributes)
+            ->post($this->buildUri('/api/groups'), $attributes)
             ->throw()
             ->json();
     }
@@ -85,7 +85,7 @@ class Groups extends Resource
         $this
             ->sdk
             ->request()
-            ->patch("/api/groups/{$id}", $attributes)
+            ->patch($this->buildUri("/api/groups/{$id}"), $attributes)
             ->throw();
     }
 
