@@ -37,7 +37,7 @@ class Token implements Arrayable, Jsonable
                     'grant_type' => 'client_credentials',
                     'client_id' => $id,
                     'client_secret' => $secret,
-                    'scopes' => implode(' ', $scopes),
+                    'scope' => implode(' ', $scopes),
                 ])
                 ->throw()
                 ->json();
@@ -48,7 +48,7 @@ class Token implements Arrayable, Jsonable
                     'grant_type' => 'client_credentials',
                     'client_id' => $id,
                     'client_secret' => $secret,
-                    'scopes' => implode(' ', $scopes),
+                    'scope' => implode(' ', $scopes),
                 ])
                 ->throw()
                 ->json();
