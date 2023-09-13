@@ -2,6 +2,10 @@
 
 All notable changes to `coretrekas/idp` will be documented in this file
 
+## 1.0.10
+
+- Reverted scope change.
+
 ## 1.0.9
 
 - Reverted scope change.
