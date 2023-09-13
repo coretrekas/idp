@@ -2,6 +2,10 @@
 
 All notable changes to `coretrekas/idp` will be documented in this file
 
+## 1.0.8
+
+- Changed oauth `scope` property to `scopes`.
+
 ## 1.0.7
 
 - Added the possibillity to validate groups and users without persisting.
